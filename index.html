@@ -6,30 +6,27 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
+    <button name="button">Click Me!</button>
+    <div class="tweets"></div>
     <script>
-
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
-        let lastTweetIndex = 0;
+        // $body.html('');
 
-        setInterval(function(){
+        $('button').on('click', function(){
           var index = streams.home.length - 1;
-          let lastIndex = index;
-          if( lastIndex !== lastTweetIndex ){
-            while(index >= lastTweetIndex){
-              var tweet = streams.home[index];
-              var $tweet = $('<div></div>');
-              $tweet.append('<span>'+ '@' + tweet.user + '</span>')
-              $tweet.append('<span>'+ ': ' + tweet.message + ' - ' + tweet.created_at + '</span>');
-              $tweet.prependTo($body);
-              index -= 1;
-            }
-          lastTweetIndex = lastIndex;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.append('<span>'+ '@' + tweet.user + '</span>')
+            $tweet.append('<span>'+ ': ' + tweet.message + ' - ' + tweet.created_at + '</span>');
+            // $tweet.prependTo($body);
+            $tweet.prependTo($(".tweets"));
+            // $(".class").prependTo($tweet);
+            index -= 1;
           }
         });
       });
-
     </script>
   </body>
 </html>
