@@ -14,18 +14,22 @@
         // $body.html('');
 
         $('button').on('click', function(){
+          clearTweets('.tweets');
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
             $tweet.append('<span>'+ '@' + tweet.user + '</span>')
             $tweet.append('<span>'+ ': ' + tweet.message + ' - ' + tweet.created_at + '</span>');
-            // $tweet.prependTo($body);
-            $tweet.prependTo($(".tweets"));
-            // $(".class").prependTo($tweet);
+            $(".tweets").append($tweet);
             index -= 1;
           }
         });
+
+        function clearTweets(elementID){
+          $(elementID).html("");
+        };
+
       });
     </script>
   </body>
