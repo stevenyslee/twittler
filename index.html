@@ -10,18 +10,22 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
-        let count = 0;
+        let lastTweetIndex = 0;
 
         setInterval(function(){
-        var index = streams.home.length - 1;
-          while(index >= 0){
-            var tweet = streams.home[index];
-            var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + tweet.created_at);
-            $tweet.appendTo($body);
-            index -= 1;
+          var index = streams.home.length - 1;
+          let lastIndex = index;
+          if( lastIndex !== lastTweetIndex ){
+            while(index >= lastTweetIndex){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + tweet.created_at);
+              $tweet.prependTo($body);
+              index -= 1;
+            }
+          lastTweetIndex = lastIndex;
           }
-        }, 2000);
+        });
       });
 
     </script>
