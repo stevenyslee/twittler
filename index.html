@@ -6,27 +6,31 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <button name="button">Click Me!</button>
+    <button name="button" class='button'>Click Me!</button>
+    <button name="button" class='test'>Test Me!</button>
     <div class="tweets"></div>
     <script>
       $(document).ready(function(){
-        var $body = $("body");
+        let $body = $("body");
 
         $("button").on("click", function(){
           clearTweets(".tweets");
-          var index = streams.home.length - 1;
+          let index = streams.home.length - 1;
           while(index >= 0){
-            var tweet = streams.home[index];
+            let tweet = streams.home[index];
             let $tweet = $("<div></div>");
-            $tweet.addClass("tweet");
             let $user = $("<span></span>").addClass("user").text("@" + tweet.user);
             let $message = $("<span></span").text(": " + tweet.message + " - " + tweet.created_at);
+
+            $tweet.addClass("tweet");
+            // console.log(tweet.user);
             $user.on("click", function(){
-                  $(this).css("background-color", "yellow");
+              filterTweets(tweet.user);
             });
             $tweet.append($user);
             $tweet.append($message);
             $(".tweets").append($tweet);
+
             index -= 1;
           }
         });
@@ -35,8 +39,25 @@
           $(elementID).html("");
         };
 
-        function filterTweets(user){
-          
+        function filterTweets(username){
+          clearTweets(".tweets");
+          let index = streams.users[username].length - 1;
+          // console.log(username);
+          while(index >= 0){
+            let tweet = streams.users[username][index];
+            // console.log(username);
+            let $tweet = $("<div></div>");
+            $tweet.addClass("tweet");
+            let $user = $("<span></span>").addClass("user").text("@" + tweet.user);
+            let $message = $("<span></span").text(": " + tweet.message + " - " + tweet.created_at);
+            $user.on("click", function(){
+              filterTweets(tweet.user);
+            });
+            $tweet.append($user);
+            $tweet.append($message);
+            $(".tweets").append($tweet);
+            index -= 1;
+          }
         }
 
       });
