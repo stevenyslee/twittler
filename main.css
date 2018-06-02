@@ -1,6 +1,35 @@
+
 div {
+	justify-content: center;
 	margin: 20px;
 }
 span {
 	color: black;
+}
+
+.user {
+	font-style: oblique;
+	color: blue;
+	font-size: 18px;
+
+}
+
+.tweet {
+	/*border: 6px solid #949599;*/
+	justify-content: center;
+	height: 100px;
+	margin: 30px;
+	padding: 20px;
+	width: 400px;
+}
+
+.message{
+	display: block;
+	font-size: 30px;
+}
+
+.time{
+	padding: 10px;
+	display: block;
+	color: grey;
 }

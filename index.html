@@ -7,11 +7,14 @@
   </head>
   <body>
     <button name="button" class='button'>Click Me!</button>
-    <button name="button" class='test'>Test Me!</button>
     <div class="tweets"></div>
     <script>
       $(document).ready(function(){
         let $body = $("body");
+        let options = { 
+          weekday: "long", year: "numeric", month: "short",  
+          day: "numeric", hour: "2-digit", minute: "2-digit"  
+        };  
 
         $("button").on("click", function(){
           clearTweets(".tweets");
@@ -20,15 +23,18 @@
             let tweet = streams.home[index];
             let $tweet = $("<div></div>");
             let $user = $("<span></span>").addClass("user").text("@" + tweet.user);
-            let $message = $("<span></span").text(": " + tweet.message + " - " + tweet.created_at);
+            let $message = $("<span></span").text(tweet.message);
+            let $time = $("<span></span").text(" - " + tweet.created_at.toLocaleDateString('en-US', options));
 
+            $message.addClass("message");
+            $time.addClass("time");
             $tweet.addClass("tweet");
-            // console.log(tweet.user);
             $user.on("click", function(){
               filterTweets(tweet.user);
             });
             $tweet.append($user);
             $tweet.append($message);
+            $tweet.append($time);
             $(".tweets").append($tweet);
 
             index -= 1;
@@ -42,10 +48,8 @@
         function filterTweets(username){
           clearTweets(".tweets");
           let index = streams.users[username].length - 1;
-          // console.log(username);
           while(index >= 0){
             let tweet = streams.users[username][index];
-            // console.log(username);
             let $tweet = $("<div></div>");
             $tweet.addClass("tweet");
             let $user = $("<span></span>").addClass("user").text("@" + tweet.user);
