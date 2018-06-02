@@ -29,9 +29,11 @@
             $message.addClass("message");
             $time.addClass("time");
             $tweet.addClass("tweet");
+
             $user.on("click", function(){
               filterTweets(tweet.user);
             });
+
             $tweet.append($user);
             $tweet.append($message);
             $tweet.append($time);
@@ -51,15 +53,23 @@
           while(index >= 0){
             let tweet = streams.users[username][index];
             let $tweet = $("<div></div>");
-            $tweet.addClass("tweet");
             let $user = $("<span></span>").addClass("user").text("@" + tweet.user);
-            let $message = $("<span></span").text(": " + tweet.message + " - " + tweet.created_at);
+            let $message = $("<span></span").text(tweet.message);
+            let $time = $("<span></span").text(" - " + tweet.created_at.toLocaleDateString('en-US', options));
+            
+            $message.addClass("message");
+            $time.addClass("time");
+            $tweet.addClass("tweet");
+
             $user.on("click", function(){
               filterTweets(tweet.user);
             });
+
             $tweet.append($user);
             $tweet.append($message);
+            $tweet.append($time);
             $(".tweets").append($tweet);
+
             index -= 1;
           }
         }
