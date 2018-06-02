@@ -1,11 +1,43 @@
+button {
+	border-radius: 5px;
+	color: grey;
+	left:50%;
+	cursor: pointer;
+	display: block;
+	font-weight: 400;
+	letter-spacing: .5px;
+	margin: 0 auto;
+	text-transform: uppercase;
+	border: 1px solid #fff;
+	padding: 10px 30px;
+	margin-bottom: 5px;
+}
+
+header {
+	text-align: center;
+	color: white;
+	font-family: Arvo;
+	font-size: 80px;
+	font-weight: 500;
+}
+
+body {
+	background-image: url("https://images.pexels.com/photos/953214/pexels-photo-953214.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
+}
 
 div {
 	justify-content: center;
-	margin: 20px;
+	margin: auto;
+	width: 90%;
+	border-radius: 5px;
+	background: white;
 }
+
 span {
 	color: black;
 }
+
+
 
 .user {
 	font-style: oblique;
@@ -15,21 +47,27 @@ span {
 }
 
 .tweet {
-	/*border: 6px solid #949599;*/
+	box-sizing: border-box;
+	border-radius: 5px;
+	padding: 5px;
+/*	border-radius: 5px;
 	justify-content: center;
 	height: 100px;
 	margin: 30px;
 	padding: 20px;
-	width: 400px;
+	width: 400px;*/
 }
 
 .message{
+	padding: 0px;
 	display: block;
 	font-size: 30px;
 }
 
 .time{
-	padding: 10px;
+	padding: 5px;
 	display: block;
 	color: grey;
+	border-radius: 5px;
+	border-bottom: 2px solid grey;
 }

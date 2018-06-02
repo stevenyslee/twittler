@@ -6,19 +6,28 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <button name="button" class='button'>Click Me!</button>
+    <header>Twittler</header>
+    <button name="button" class='button'>Referesh Tweets!</button>
     <div class="tweets"></div>
     <script>
       $(document).ready(function(){
+
         let $body = $("body");
         let options = { 
           weekday: "long", year: "numeric", month: "short",  
           day: "numeric", hour: "2-digit", minute: "2-digit"  
         };  
 
+        generateTweets();
+
         $("button").on("click", function(){
+          generateTweets();
+        });
+
+        function generateTweets(){
           clearTweets(".tweets");
           let index = streams.home.length - 1;
+
           while(index >= 0){
             let tweet = streams.home[index];
             let $tweet = $("<div></div>");
@@ -41,7 +50,7 @@
 
             index -= 1;
           }
-        });
+        }
 
         function clearTweets(elementID){
           $(elementID).html("");
